@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24Hour.Services
+namespace _24Hour.Model
 {
-    public class Class1
+    public class Reply
     {
     }
 }
