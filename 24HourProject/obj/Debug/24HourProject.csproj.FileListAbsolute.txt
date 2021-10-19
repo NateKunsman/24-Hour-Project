@@ -1,2 +1,0 @@
-C:\EFAProjects\24HourProject\24HourProject\obj\Debug\24HourProject.csproj.AssemblyReference.cache
-C:\EFAProjects\24HourProject\24HourProject\obj\Debug\24HourProject.csproj.CoreCompileInputs.cache
