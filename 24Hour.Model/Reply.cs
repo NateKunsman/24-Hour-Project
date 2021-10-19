@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace _24Hour.Model
     {
         //Foreign Key to Comment via Id w/ virtual Comment
         
-        [Foreign]
+        [ForeignKey]
         public int ReplyId { get; set; }
         //string text
         public string Content { get; set; }
