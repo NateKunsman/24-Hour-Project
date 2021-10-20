@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24Hour.Data
+namespace _24Hour.Model
 {
-    public class Users
+    public class PostCreate
     {
         [Key]
         public int Id { get; set; }
@@ -17,5 +17,6 @@ namespace _24Hour.Data
 
         [Required]
         public Guid AuthorId { get; set; }
+
     }
 }

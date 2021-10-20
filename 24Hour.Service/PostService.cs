@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _24Hour.Data;
+using _24Hour.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +12,38 @@ namespace _24Hour.Service
     {
         //CRUD
         //PGPD
+        private readonly int _userId;
+        public PostService(int userId)
+        { _userId = userId; }
+        //Create
+        public bool CreatePost(PostCreate model)
+        {
+            var entity =
+                new Users()
+                {
+                    Id = _userId,
+                    Title = model.Title,
+                    Content = model.Content,
+                    AuthorId = model.AuthorId
+                };
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.User.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //Get
+       
+
+
+
+        //GetbyId
+
+
+        //Update
+
+
+        //Delete
     }
 }
