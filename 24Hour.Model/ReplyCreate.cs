@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _24Hour.Model
 {
-    class ReplyCreate
+    public class ReplyCreate
     {
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
