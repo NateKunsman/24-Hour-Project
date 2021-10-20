@@ -28,7 +28,8 @@ namespace _24Hour.Service
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.
+                ctx.Comment.Add(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -36,10 +37,21 @@ namespace _24Hour.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = 
+                var query =
                     ctx
                     .Users
-                    .Where(e => e.
+                    .Where(e => e.AuthorId == _userId)
+                    .Select(
+                        e =>
+                        new Comment
+                        {
+                            AuthorId = _userId,
+                            Title = e.Title,
+                            Text = e.Text
+                        }
+                        );
+                return query.ToArray();
+                
             }
         }
 
