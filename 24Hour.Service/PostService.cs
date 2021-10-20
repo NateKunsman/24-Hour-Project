@@ -34,7 +34,25 @@ namespace _24Hour.Service
         }
 
         //Get
-       
+        public IEnumerable<PostList> GetPost()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.User
+                        .Where(e => e.Id == _userId)
+                        .Select(e => new PostList
+                        {
+                            Id = e.Id,
+                            Title = e.Title,
+                            Content = e.Content,
+                            AuthorId = e.AuthorId
+
+                        }
+                        );
+                return query.ToArray();
+            }
+        }
+
 
 
 
