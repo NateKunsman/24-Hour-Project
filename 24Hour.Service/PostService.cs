@@ -13,6 +13,8 @@ namespace _24Hour.Service
         //CRUD
         //PGPD
         private readonly int _userId;
+        public PostService(int userId)
+        { _userId = userId; }
         //Create
         public bool CreatePost(PostCreate model)
         {
@@ -32,6 +34,8 @@ namespace _24Hour.Service
         }
 
         //Get
+       
+
 
 
         //GetbyId

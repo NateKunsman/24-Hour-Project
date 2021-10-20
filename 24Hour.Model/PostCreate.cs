@@ -14,6 +14,7 @@ namespace _24Hour.Model
         [Required]
         public string Title { get; set; }
         public virtual string Content { get; set; }
+
         [Required]
         public Guid AuthorId { get; set; }
 
