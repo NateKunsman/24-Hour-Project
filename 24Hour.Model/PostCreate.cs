@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24Hour.Data
+namespace _24Hour.Model
 {
-    public class Users
+    public class PostCreate
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         public virtual string Content { get; set; }
-
         [Required]
         public Guid AuthorId { get; set; }
+
     }
 }
