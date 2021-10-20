@@ -15,7 +15,6 @@ namespace _24Hour.Data
         public string Title { get; set; }
         public virtual string Text { get; set; }
         [Required]
-        public Guid AutherId { get; set; }
-
+        public Guid AuthorId { get; set; }
     }
 }
