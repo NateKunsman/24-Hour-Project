@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24Hour.Model
+namespace _24Hour.Data
 {
     public class Comment
     {

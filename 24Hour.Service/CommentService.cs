@@ -28,7 +28,7 @@ namespace _24Hour.Service
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Comment.Add(entity);
+                ctx.Comments.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -39,7 +39,7 @@ namespace _24Hour.Service
             {
                 var query =
                     ctx
-                    .Users
+                    .Comments
                     .Where(e => e.AuthorId == _userId)
                     .Select(
                         e =>
@@ -51,25 +51,57 @@ namespace _24Hour.Service
                         }
                         );
                 return query.ToArray();
-                
+
             }
         }
 
         public Comment GetCommentByID(int Id)
         {
-
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Comments
+                    .Single(e => e.Id == Id && e.AuthorId == _userId);
+                return
+                    new Comment
+                    {
+                        Id = entity.Id,
+                        Text = entity.Text,
+                        Title = entity.Title
+                    };
+            }
         }
 
         public bool UpdateComment(Comment model)
         {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Comments
+                    .Single(e => e.Id == model.Id && e.AuthorId == _userId);
+                entity.Title = model.Title;
+                entity.Text = model.Text;
 
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public bool DeleteComment(int Id)
         {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Comments
+                    .Single(e => e.Id == Id && e.AuthorId == _userId);
+                ctx.Comments.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+
 
         }
-
-
     }
 }

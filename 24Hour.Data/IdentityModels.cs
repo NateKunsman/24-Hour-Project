@@ -34,7 +34,7 @@ namespace _24Hour.Data
         }
 
         public DbSet<Users> User { get; set; }
-        
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
