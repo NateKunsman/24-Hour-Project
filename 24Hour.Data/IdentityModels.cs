@@ -3,6 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using _24Hour.Model;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -35,6 +36,8 @@ namespace _24Hour.Data
 
         public DbSet<Users> User { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Reply> Reply { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

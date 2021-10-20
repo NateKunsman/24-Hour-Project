@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace _24Hour.Service
 {
-    class ReplyService
+    public class ReplyService
     {
-        private readonly Guid _userId;
+        private readonly Guid _replyId;
 
-        public ReplyService(Guid userId)
+        public ReplyService(Guid replyId)
         {
-            _userId = userId;
+            _replyId = replyId;
         }
         public bool CreateReply(ReplyCreate model)
         {
@@ -31,14 +31,14 @@ namespace _24Hour.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<PostListItem> GetReplies()
+        public IEnumerable<ReplyListItem> GetReply()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var quary =
                     ctx
                         .Reply
-                        .Where(e => e.OwnerId == _userId)
+                        .Where(e => e.AuthorId == _replyId)
                         .Select(
                             e =>
                                 new ReplyListItem
@@ -57,15 +57,13 @@ namespace _24Hour.Service
                 var entity =
                     ctx
                         .Reply
-                        .Single(e => e.ReplyId == id && e.OwnerId == _userId);
+                        .Single(e => e.ReplyId == id && e.AuthorId == _replyId);
                 return
                     new ReplyDetail
                     {
-                        NoteId = entity.NoteId,
-                        Title = entity.Title,
+                        ReplyId = entity.ReplyId,
                         Content = entity.Content,
                         CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc
                     };
             }
         }
@@ -76,11 +74,8 @@ namespace _24Hour.Service
                 var entity =
                     ctx
                         .Reply
-                        .Single(e => e.NoteId == model.NoteId && e.OwnerId == _userId);
-                entity.Title = model.Title;
+                        .Single(e => e.ReplyId == model.NoteId && e.AuthorId == _replyId);
                 entity.Content = model.Content;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
-
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -91,7 +86,7 @@ namespace _24Hour.Service
                 var entity =
                     ctx
                         .Reply
-                        .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+                        .Single(e => e.ReplyId == noteId && e.AuthorId == _replyId);
                 ctx.Reply.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }

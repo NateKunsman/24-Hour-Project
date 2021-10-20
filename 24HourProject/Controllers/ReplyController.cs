@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using _24Hour.Model;
 using _24Hour.Service;
+using _24Hour.Data;
+using Microsoft.AspNet.Identity;
 
 namespace _24HourProject.Controllers
 {
@@ -16,47 +18,47 @@ namespace _24HourProject.Controllers
     //DELETE a Reply
     public class ReplyController : ApiController
     {
+        private ReplyService CreateReplyService()
+        {
+            var Id = Guid.Parse(User.Identity.GetUserId());
+            var replyService = new ReplyService(Id);
+            return replyService;
+        }
         public IHttpActionResult Get()
         {
-            PostService postService = CreatPostService();
-            var post = postService.GetPosts();
-            return Ok(post);
+            ReplyService replyService = CreateReplyService();
+            var reply = replyService.GetReply();
+            return Ok(reply);
         }
 
-        public IHttpActionResult Post(Reply post)
+        public IHttpActionResult Reply(Reply reply)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var service = CreatePostService();
-            if (!service.CreateNote(post))
+            var service = CreateReplyService();
+            if (!service.CreateReply(reply))
                 return InternalServerError();
             return Ok();
         }
 
-        private PostService CreateReplyService()
-        {
-            var Id = Guid.Parse(User.Identity.GetUserId());
-            var postService = new PostService(Id);
-            return postService;
-        }
         public IHttpActionResult Get(int id)
         {
-            PostService noteService = CreatePostService();
-            var post = noteService.GetNoteById(id);
+            ReplyService noteService = CreateReplyService();
+            var post = noteService.GetReplyById(id);
             return Ok(post);
         }
-        public IHttpActionResult Put(PostEdit post)
+        public IHttpActionResult Put(ReplyEdit reply)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var service = CreatePostService();
-            if (!service.UpdateNote(post))
+            var service = CreateReplyService();
+            if (!service.UpdateReply(reply))
                 return InternalServerError();
             return Ok();
         }
         public IHttpActionResult Delete(int id)
         {
-            var service = CreateNoteService();
+            var service = CreateReplyService();
             if (!service.DeleteNote(id))
                 return InternalServerError();
             return Ok();
