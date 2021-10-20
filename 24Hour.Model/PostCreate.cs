@@ -10,8 +10,11 @@ namespace _24Hour.Model
     public class PostCreate
     {
         public int Id { get; set; }
+
         public string Title { get; set; }
+
         public virtual string Content { get; set; }
+
         public Guid AuthorId { get; set; }
 
     }
