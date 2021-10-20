@@ -7,20 +7,16 @@ using System.Threading.Tasks;
 
 namespace _24Hour.Model
 {
-    class Comment
+    public class Comment
     {
         public int Id { get; set; }
         public string Title { get; set; }
 
-        private readonly Guid userId;
-        public Comment(Guid userId)
-       // { _userId = userId; }
+        public Guid AuthorId { get; set; }
 
         public virtual List<Reply> Reply { get; set; }  = new List<Reply>();
 
         [ForeignKey(nameof(PostId))]
         public int PostId { get; set; }
-
-
     }
 }
