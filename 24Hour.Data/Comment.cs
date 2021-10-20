@@ -1,4 +1,5 @@
 ﻿using _24Hour.Data;
+using _24Hour.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
