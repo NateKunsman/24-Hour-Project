@@ -34,6 +34,8 @@ namespace _24Hour.Data
         }
 
         public DbSet<Users> User { get; set; }
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

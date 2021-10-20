@@ -314,6 +314,10 @@
       <Project>{57f15a45-f1c0-4af7-a743-932568363559}</Project>
       <Name>24Hour.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\24Hour.Model\24Hour.Model.csproj">
+      <Project>{F9AA3EA6-678C-4BB6-86E7-8A7D491E703E}</Project>
+      <Name>24Hour.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\24Hour.Service\24Hour.Service.csproj">
       <Project>{8018C0ED-8E48-407D-AF39-6C5783610D5E}</Project>
       <Name>24Hour.Service</Name>

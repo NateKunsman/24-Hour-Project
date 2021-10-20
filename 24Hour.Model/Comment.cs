@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _24Hour.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,9 +18,14 @@ namespace _24Hour.Model
         [Required]
         public Guid AuthorId { get; set; }
 
+        [Required]
+        public string Text { get; set; }
+
         public virtual List<Reply> Reply { get; set; }  = new List<Reply>();
 
-        [ForeignKey(nameof(PostId))]
+        [ForeignKey(nameof(User))]
         public int PostId { get; set; }
+        public virtual Users User { get; set;}
+
     }
 }
