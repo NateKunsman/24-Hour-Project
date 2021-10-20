@@ -13,7 +13,7 @@ namespace _24Hour.Model
     {
         //Foreign Key to Comment via Id w/ virtual Comment
         
-        [ForeignKey(nameof(comment)]
+        [ForeignKey(nameof(Comment)]
         [Required]
         public int ReplyId { get; set; }
         //string text
